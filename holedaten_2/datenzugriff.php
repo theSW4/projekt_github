@@ -44,4 +44,42 @@ mysqli_query($datalink1,$query);
 $tbl_user      = $database.'.tbl_user';
 $tbl_dashboard = $database.'.tbl_dashboard';
 
+// Herausfinden ob es den user pi schon gibt
+$pi_user  = "SELECT ";
+$pi_user .= $tbl_user.".user_id,";
+$pi_user .= $tbl_user.".benutzername";
+$pi_user .= " FROM ".$tbl_user;
+$pi_user .= " WHERE ".$tbl_user.".benutzername = 'pi'";
+$res_pi_user = mysqli_query($datalink1,$pi_user);
+$pi_user     = mysqli_num_rows($res_pi_user);
+
+if($pi_user == 0){
+    // Wenn leer, dann benutzer neu anlegen
+    $insert_pi  = "INSERT INTO ".$tbl_user." SET ";
+    $insert_pi .= $tbl_user.".benutzername = 'pi',";
+    $insert_pi .= $tbl_user.".passwort = 'pi'";
+    mysqli_query($datalink1,$insert_pi);
+}
+
+/*
+// Benutzer des raspberry pis herausfinden
+$command = 'cut -d: -f1 /etc/passwd | grep -v -E "nobody|nogroup"';
+$output  = shell_exec($command);
+
+$command = 'sudo awk -F: \'{print $1 ":" $2}\' /etc/shadow | grep -v -E "nobody|nogroup"';
+$output  = shell_exec($command);
+
+$userinfoarray = explode("\n", trim($output));
+
+foreach($userinfoarray as $userinfo){
+    list($username, $encryptedPassword) = explode(":",$userinfo);
+
+    if(!empty($username) && !empty($encryptedPassword)){
+        $insert_pi  = "INSERT INTO ".$tbl_user." SET ";
+        $insert_pi .= $tbl_user.".benutzername = '".$username."',";
+        $insert_pi .= $tbl_user.".passwort = '".$encryptedPassword."'";
+        mysqli_query($datalink1,$insert_pi);
+    }
+}
+*/
 ?>
