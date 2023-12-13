@@ -17,7 +17,7 @@ if(isset($_POST["submit"]) AND $_POST["submit"] == "login"){
             $anzahl_benutzer  = mysqli_num_rows($res_benutzername);
 
             if($anzahl_benutzer == 1){
-                // Leite zur dashboard.php weiter
+               // Leite zur dashboard.php weiter
                header("Location: dashboard.php");
                exit();
             }
@@ -53,7 +53,7 @@ if(isset($_POST["submit"]) AND $_POST["submit"] == "login"){
             <button name="submit" value="login">LOGIN</button>
             <div class="link">
                Noch kein Konto?
-               <a href="register.php">Jetzt Anmelden</a>
+               <a href="register.php">Jetzt Registrieren</a>
             </div>
          </form>
       </div>

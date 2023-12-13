@@ -15,9 +15,9 @@ if (isset($_POST['submit'])) {
     $uploadedFile = $uploadDirectory . basename($_FILES['file']['name']);
 
     if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadedFile)) {
-        echo "Datei wurde erfolgreich hochgeladen.";
+        echo "Datei wurde erfolgreich hochgeladen. Upload Ordner";
     } else {
-        echo "Fehler beim Hochladen der Datei.";
+        echo "Fehler beim Hochladen der Datei. Upload Ordner";
     }
 }
 
@@ -65,12 +65,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['file'])) {
 
         // Verschiebe die hochgeladene Datei an den endgültigen Speicherort
         if (move_uploaded_file($uploadedFile['tmp_name'], $destination)) {
-            echo 'Die Datei wurde erfolgreich hochgeladen.';
+            echo 'Die Datei wurde erfolgreich hochgeladen. Pi Ordner';
         } else {
-            echo 'Fehler beim Verschieben der Datei.';
+            echo 'Fehler beim Verschieben der Datei. Pi Ordner';
         }
     } else {
-        echo 'Fehler beim Hochladen der Datei. Fehlercode: ' . $uploadedFile['error'];
+        echo 'Fehler beim Hochladen der Datei. Pi Ordner Fehlercode: ' . $uploadedFile['error'];
     }
 } else {
     echo 'Ungültige Anfrage.';
