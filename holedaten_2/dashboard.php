@@ -30,7 +30,6 @@ $row_dashboard = mysqli_fetch_array($res_dashboard);
 <!-- Navigationsleiste -->
 <nav>
     <a href="#home">Home</a>
-    <a href="#about">Über uns</a>
     <a href="#contact">Logout</a>
 </nav>
    <div class="bemerkung-form">
