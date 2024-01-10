@@ -7,6 +7,12 @@ include_once("datenzugriff.php");
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
    if(isset($_POST["submit"]) AND $_POST["submit"] == "login"){
        // Pruefen, ob das Passwort identisch ist - nur dann fortfahren
+
+       echo "hallo";
+       echo "<pre>";
+       print_r($_POST);echo "<<<<<<";
+       echo "</pre>";die();
+       
        if((isset($_POST["passwort"]) AND !empty($_POST["passwort"])) AND (isset($_POST["benutzername"]) AND !empty($_POST["benutzername"]))){
    
            // Pruefen, ob der Benutzername schon vorhanden ist
@@ -46,7 +52,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 <html lang="de" dir="ltr">
    <head>
       <meta charset="utf-8">
-      <title>Glowing Inputs Login Form UI</title>
       <link rel="stylesheet" href="style.css">
    </head>
    <body>
