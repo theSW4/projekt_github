@@ -9,15 +9,17 @@ if (!is_dir($uploadDirectory)) {
     }
 }
 
-if (isset($_POST['submit'])) {
-    $uploadDirectory = "uploads/"; // Ordner, in dem die Datei gespeichert wird
-
-    $uploadedFile = $uploadDirectory . basename($_FILES['file']['name']);
-
-    if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadedFile)) {
-        echo "Datei wurde erfolgreich hochgeladen. Upload Ordner";
-    } else {
-        echo "Fehler beim Hochladen der Datei. Upload Ordner";
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    if (isset($_POST['submit'])) {
+        $uploadDirectory = "uploads/"; // Ordner, in dem die Datei gespeichert wird
+    
+        $uploadedFile = $uploadDirectory . basename($_FILES['file']['name']);
+    
+        if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadedFile)) {
+            echo "Datei wurde erfolgreich hochgeladen. Upload Ordner";
+        } else {
+            echo "Fehler beim Hochladen der Datei. Upload Ordner";
+        }
     }
 }
 

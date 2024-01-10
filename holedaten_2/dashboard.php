@@ -2,13 +2,15 @@
 // Datenzugriff herstellen
 include_once("datenzugriff.php");
 
-// Die Kommentare und Dateien abspeichern
-if(isset($_POST["submit"]) AND $_POST["submit"] == "absenden"){
-   if(!empty($_POST["bemerkung"])){
-      $insert_bemerkung  = "INSERT INTO ".$tbl_dashboard." SET ";
-      $insert_bemerkung .= $tbl_dashboard.".bemerkung = '".$_POST["bemerkung"]."',";
-      $insert_bemerkung .= $tbl_dashboard.".user_id = '".$_GET["user_id"]."'";
-      mysqli_query($datalink1,$insert_bemerkung);
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+   // Die Kommentare und Dateien abspeichern
+   if(isset($_POST["submit"]) AND $_POST["submit"] == "absenden"){
+      if(!empty($_POST["bemerkung"])){
+         $insert_bemerkung  = "INSERT INTO ".$tbl_dashboard." SET ";
+         $insert_bemerkung .= $tbl_dashboard.".bemerkung = '".$_POST["bemerkung"]."',";
+         $insert_bemerkung .= $tbl_dashboard.".user_id = '".$_GET["user_id"]."'";
+         mysqli_query($datalink1,$insert_bemerkung);
+      }
    }
 }
 
