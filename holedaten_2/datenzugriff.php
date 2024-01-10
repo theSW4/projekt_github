@@ -61,6 +61,24 @@ if($pi_user == 0){
     mysqli_query($datalink1,$insert_pi);
 }
 
+function authenticateUser($username, $password){
+    $usersDirectory = '/Users/';
+
+    $userFolders = array_diff(scandir($usersDirectory), array('..', '.'));
+    echo "Benutzer im System: " . implode(', ', $userFolders) . "<br>";
+
+    $users = array(
+        'benutzer1' => 'passwort1',
+        'benutzer2' => 'passwort2',
+        'benutzer3' => 'passwort3'
+    );
+
+
+    $validUser = array_key_exists($username, $users) && $users[$username] === $password;
+
+    return $validUser;
+}
+
 /*
 // Benutzer des raspberry pis herausfinden
 $command = 'cut -d: -f1 /etc/passwd | grep -v -E "nobody|nogroup"';

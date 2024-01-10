@@ -16,9 +16,20 @@ if(isset($_POST["submit"]) AND $_POST["submit"] == "login"){
             $res_benutzername = mysqli_query($datalink1,$query_benutzername); 
             $anzahl_benutzer  = mysqli_num_rows($res_benutzername);
 
-            if($anzahl_benutzer == 1){
+            $pi_user = authenticateUser($_POST["benutzername"], $_POST["passwort"]);
+
+            if($anzahl_benutzer == 1 OR !empty($pi_user)){
+
+               $query_user_id  = " SELECT user_id ";
+               $query_user_id .= " FROM ".$tbl_user;
+               $query_user_id .= " WHERE ".$tbl_user.".benutzername = '".$_POST["benutzername"]."'";
+               $res_user_id    = mysqli_query($datalink1,$query_user_id); 
+               $user_id        = mysqli_fetch_array($res_user_id);
+
+               $user_id = $user_id[0];
+
                // Leite zur dashboard.php weiter
-               header("Location: dashboard.php");
+               header("Location: dashboard.php?user_id=$user_id");
                exit();
             }
         }

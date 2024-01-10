@@ -6,17 +6,18 @@ include_once("datenzugriff.php");
 if(isset($_POST["submit"]) AND $_POST["submit"] == "absenden"){
    if(!empty($_POST["bemerkung"])){
       $insert_bemerkung  = "INSERT INTO ".$tbl_dashboard." SET ";
-      $insert_bemerkung .= $tbl_dashboard.".bemerkung = '".$_POST["bemerkung"]."'";
+      $insert_bemerkung .= $tbl_dashboard.".bemerkung = '".$_POST["bemerkung"]."',";
+      $insert_bemerkung .= $tbl_dashboard.".user_id = '".$_GET["user_id"]."'";
       mysqli_query($datalink1,$insert_bemerkung);
    }
 }
 
 // Die bereits vorhandenen Daten holen
-$query_dashboard  = " SELECT ".$tbl_dashboard.".bemerkung, ".$tbl_user.".benutzername ";
+$query_dashboard  = " SELECT ".$tbl_dashboard.".bemerkung, ";
+$query_dashboard .= $tbl_user.".benutzername ";
 $query_dashboard .= " FROM ".$tbl_dashboard;
 $query_dashboard .= " LEFT JOIN ".$tbl_user." ON ".$tbl_user.".user_id =".$tbl_dashboard.".user_id"; 
 $res_dashboard = mysqli_query($datalink1,$query_dashboard); 
-$row_dashboard = mysqli_fetch_array($res_dashboard);
 ?>
 
 <html lang="de" dir="ltr">
@@ -30,7 +31,7 @@ $row_dashboard = mysqli_fetch_array($res_dashboard);
 <!-- Navigationsleiste -->
 <nav>
     <a href="#home">Home</a>
-    <a href="#contact">Logout</a>
+    <a href="login.php">Logout</a>
 </nav>
    <div class="bemerkung-form">
       <div class="text-dashboard">
@@ -41,11 +42,25 @@ $row_dashboard = mysqli_fetch_array($res_dashboard);
             <textarea type="text" style="width:500px;height: 150px;" name="bemerkung" id="bemerkung" placeholder="Kommentar..."></textarea>
          </div>
          <button name="submit" value="absenden" style="width:500px;height: 50px;">An die Pinnwand heften<a href="#"></a></button>
+         
+         <?php
+         /*
+         while($row_dashboard = mysqli_fetch_array($res_dashboard)){?>
+            <div class="field">
+               <tr>
+                  <td height="5"></td>
+               </tr>
+               <tr>
+                  <td name="benutzername" id="benutzername"><?=$row_dashboard["benutzername"]?></td>
+                  <td name="test" id="test"><?=$row_dashboard["bemerkung"]?></td>
+               </tr>
+            </div>
+         <?php }
+         */
+         ?>
       </form>
 
-      <div>
-         
-      </div>
+
    </div>
 </body>
 <body>
@@ -57,5 +72,3 @@ $row_dashboard = mysqli_fetch_array($res_dashboard);
     </form>
 </body>
 </html>
-<?php 
-?>
