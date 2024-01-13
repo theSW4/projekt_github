@@ -1,5 +1,5 @@
 <?php
-$mysqli_data = Array("server"=>'127.0.0.1',"user"=>"root","password"=>"","projekt_github");
+$mysqli_data = Array("server"=>'127.0.0.1',"user"=>"root","password"=>"passwort","projekt_github");
 $datalink1   = mysqli_connect($mysqli_data['server'],$mysqli_data['user'],$mysqli_data['password'], "") OR die("Die Verbindung mit der Datenbank ist fehlgeschlagen!");
 
 // Überprüfen, ob die Verbindung erfolgreich hergestellt wurde
@@ -61,6 +61,7 @@ if($pi_user == 0){
     mysqli_query($datalink1,$insert_pi);
 }
 
+/*
 function authenticateUser($username, $password){
     $usersDirectory = '/Users/';
 
@@ -78,6 +79,7 @@ function authenticateUser($username, $password){
 
     return $validUser;
 }
+*/
 
 /*
 // Benutzer des raspberry pis herausfinden
