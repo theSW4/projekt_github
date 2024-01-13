@@ -12,6 +12,28 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
          mysqli_query($datalink1,$insert_bemerkung);
       }
    }
+
+   $uploadDirectory = '/var/www/html/projekt_github'; 
+
+   if (isset($_FILES['file'])) {
+      $uploadedFile = $_FILES['file'];
+
+      // Überprüfe, ob kein Fehler beim Upload aufgetreten ist
+      if ($uploadedFile['error'] === UPLOAD_ERR_OK) {
+         $destination = $uploadDirectory . basename($uploadedFile['name']);
+
+         // Verschiebe die hochgeladene Datei an den endgültigen Speicherort
+         if (move_uploaded_file($uploadedFile['tmp_name'], $destination)) {
+               echo 'Die Datei wurde erfolgreich hochgeladen. Pi Ordner';
+         } else {
+               echo 'Fehler beim Verschieben der Datei. Pi Ordner';
+         }
+      } else {
+         echo 'Fehler beim Hochladen der Datei. Pi Ordner Fehlercode: ' . $uploadedFile['error'];
+      }
+   } else {
+      echo 'Ungültige Anfrage.';
+   }
 }
 
 // Die bereits vorhandenen Daten holen
@@ -66,7 +88,7 @@ $res_dashboard = mysqli_query($datalink1,$query_dashboard);
    </div>
 </body>
 <body>
-    <form action="upload.php" method="post" enctype="multipart/form-data">
+    <form action="#" method="post" enctype="multipart/form-data">
          <label for="file">Datei auswählen:</label>
          <input type="file" name="file" id="file">
          <p></p>
