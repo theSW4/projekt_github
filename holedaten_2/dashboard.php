@@ -25,43 +25,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
       }
    }
 
-   $targetDir = "uploads/";
-   $targetFile = $targetDir . basename($_FILES["file"]["name"]);
-   $uploadOk = 1;
-   $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
 
-   // Überprüfen, ob die Datei bereits existiert
-   if (file_exists($targetFile)) {
-      echo "Die Datei existiert bereits.";
-      $uploadOk = 0;
-   }
-
-   // Dateigröße überprüfen (hier auf 5 MB beschränkt)
-   if ($_FILES["file"]["size"] > 5000000) {
-      echo "Die Datei ist zu groß.";
-      $uploadOk = 0;
-   }
-
-   // Erlaubte Dateiformate überprüfen (hier nur Beispiel für Bilder)
-   if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
-      echo "Nur JPG, JPEG, PNG & GIF Dateien sind erlaubt.";
-      $uploadOk = 0;
-   }
-
-   // Überprüfen, ob $uploadOk auf 0 gesetzt wurde (Fehler)
-   if ($uploadOk == 0) {
-      echo "Die Datei wurde nicht hochgeladen.";
-   } else {
-      // Wenn alles in Ordnung ist, die Datei hochladen
-      if (move_uploaded_file($_FILES["file"]["tmp_name"], $targetFile)) {
-         echo "Die Datei " . htmlspecialchars(basename($_FILES["file"]["name"])) . " wurde hochgeladen.";
-      } else {
-         echo "Es gab einen Fehler beim Hochladen deiner Datei.";
-      }
-   }
-
-   
-   /*
    $uploadDirectory = "uploads/"; // Ordner, in dem die Datei gespeichert wird
     
    $uploadedFile = $uploadDirectory . basename($_FILES['file']['name']);
@@ -72,6 +36,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
        echo "Fehler beim Hochladen der Datei. Upload Ordner";
    }
 
+   /*
    $uploadDirectory = '/var/www/html/projekt_github'; 
 
    if (isset($_FILES['file'])) {
@@ -115,15 +80,22 @@ $res_dashboard = mysqli_query($datalink1,$query_dashboard);
 <!-- Navigationsleiste -->
 <nav>
     <a href="#home">Home</a>
+    <a href="changepw.php">Passwort ändern</a>
     <a href="login.php">Logout</a>
 </nav>
-   <div class="bemerkung-form">
-      <div class="text-dashboard">
-            Hier können Sie Ihren Pinnwandeintrag eingeben:
-      </div>
+<div class="bemerkung-form">
+   <div class="text-dashboard">
+         Hier können Sie Ihre Dateien hochladen:
+   </div>
+<form action="#" method="post" enctype="multipart/form-data">
+         <label for="file">Datei auswählen:</label>
+         <input type="file" name="file" id="file">
+         <p></p>
+         <button type="submit" name="submit" style="width:500px;height: 50px;">Hochladen</button>
+    </form>
       <form name="form" method="post" action="#">
          <div class="field">
-            <textarea type="text" style="width:500px;height: 150px;" name="bemerkung" id="bemerkung" placeholder="Kommentar..."></textarea>
+            <textarea type="text" style="width:500px;height: 100px;" name="bemerkung" id="bemerkung" placeholder="Kommentar..."></textarea>
          </div>
          <button name="submit" value="absenden" style="width:500px;height: 50px;">An die Pinnwand heften<a href="#"></a></button>
          
@@ -148,11 +120,6 @@ $res_dashboard = mysqli_query($datalink1,$query_dashboard);
    </div>
 </body>
 <body>
-    <form action="#" method="post" enctype="multipart/form-data">
-         <label for="file">Datei auswählen:</label>
-         <input type="file" name="file" id="file">
-         <p></p>
-         <button type="submit" name="submit" style="width:500px;height: 50px;">Hochladen</button>
-    </form>
+    
 </body>
 </html>

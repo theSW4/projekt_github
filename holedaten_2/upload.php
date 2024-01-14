@@ -6,6 +6,9 @@ $uploadDirectory = "uploads/";
 if (!is_dir($uploadDirectory)) {
     if (!mkdir($uploadDirectory, 0777, true)) {
         die('Fehler beim Erstellen des Upload-Ordners...');
+        // Leite zur dashboard.php weiter
+        header("Location: dashboard.php");
+        exit();
     }
 }
 
@@ -17,8 +20,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     
         if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadedFile)) {
             echo "Datei wurde erfolgreich hochgeladen. Upload Ordner";
+            // Leite zur dashboard.php weiter
+            header("Location: dashboard.php");
+            exit();
         } else {
             echo "Fehler beim Hochladen der Datei. Upload Ordner";
+            // Leite zur dashboard.php weiter
+            header("Location: dashboard.php");
+            exit();
         }
     }
 }
@@ -56,7 +65,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 // // Verbindung schließen
 // ssh2_disconnect($connection);
 
-$uploadDirectory = '/pfad/auf/deinem/raspberry_pi/'; // Ändere dies entsprechend deinem Verzeichnis
+$uploadDirectory = '/var/www/html/projekt_github'; // Ändere dies entsprechend deinem Verzeichnis
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['file'])) {
     $uploadedFile = $_FILES['file'];
