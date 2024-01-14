@@ -17,9 +17,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                $res_benutzername = mysqli_query($datalink1,$query_benutzername); 
                $anzahl_benutzer  = mysqli_num_rows($res_benutzername);
    
-               $pi_user = authenticateUser($_POST["benutzername"], $_POST["passwort"]);
+               // $pi_user = authenticateUser($_POST["benutzername"], $_POST["passwort"]);
    
-               if($anzahl_benutzer == 1 OR !empty($pi_user)){
+               if($anzahl_benutzer == 1){
    
                   $query_user_id  = " SELECT user_id ";
                   $query_user_id .= " FROM ".$tbl_user;
