@@ -2,8 +2,6 @@
 // Datenzugriff herstellen
 include_once("datenzugriff.php");
 
-print_r($_SESSION);
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if(isset($_POST["newPassword"]) AND isset($_POST["confirmPassword"]) AND !empty("newPassword") AND !empty("confirmPassword")){
         if($_POST["newPassword"] == $_POST["confirmPassword"]){
