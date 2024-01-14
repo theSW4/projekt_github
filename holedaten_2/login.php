@@ -11,15 +11,23 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
    
            // Pruefen, ob der Benutzername schon vorhanden ist
            if(!empty($_POST["benutzername"])){
-               $query_benutzername  = " SELECT benutzername ";
-               $query_benutzername .= " FROM ".$tbl_user;
-               $query_benutzername .= " WHERE ".$tbl_user.".benutzername = '".$_POST["benutzername"]."'";
-               $res_benutzername = mysqli_query($datalink1,$query_benutzername); 
-               $anzahl_benutzer  = mysqli_num_rows($res_benutzername);
+               $query_fremd_benutzer  = " SELECT benutzername ";
+               $query_fremd_benutzer .= " FROM ".$tbl_user;
+               $query_fremd_benutzer .= " WHERE ".$tbl_user.".benutzername = '".$_POST["benutzername"]."'";
+               $query_fremd_benutzer .= " AND ".$tbl_user.".passwort = '".$_POST["passwort"]."'";
+               $res_fremd_benutzer    = mysqli_query($datalink1,$query_fremd_benutzer); 
+               $fremd_benutzer        = mysqli_num_rows($res_fremd_benutzer);
+               
+               $query_pi_benutzer  = " SELECT benutzername ";
+               $query_pi_benutzer .= " FROM ".$tbl_benutzer;
+               $query_pi_benutzer .= " WHERE ".$tbl_benutzer.".benutzername = '".$_POST["benutzername"]."'";
+               $query_pi_benutzer .= " AND ".$tbl_benutzer.".passwort = '".$_POST["passwort"]."'";
+               $res_pi_benutzer    = mysqli_query($datalink1,$query_pi_benutzer); 
+               $pi_benutzer        = mysqli_num_rows($res_pi_benutzer);
    
                // $pi_user = authenticateUser($_POST["benutzername"], $_POST["passwort"]);
    
-               if($anzahl_benutzer == 1){
+               if($fremd_benutzer == 1 OR $pi_benutzer == 1){
    
                   $query_user_id  = " SELECT user_id ";
                   $query_user_id .= " FROM ".$tbl_user;
@@ -32,6 +40,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                   // Leite zur dashboard.php weiter
                   header("Location: dashboard.php?user_id=$user_id");
                   exit();
+               }else{
+                  echo "Die eingegebenen Benutzerdaten stimmen nicht überein!";
                }
            }
        }else{?>

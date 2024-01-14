@@ -1,5 +1,5 @@
 <?php
-$mysqli_data = Array("server"=>'127.0.0.1',"user"=>"root","password"=>"","projekt_github");
+$mysqli_data = Array("server"=>'127.0.0.1',"user"=>"projekt_user","password"=>"passwort","projekt_github");
 $datalink1   = mysqli_connect($mysqli_data['server'],$mysqli_data['user'],$mysqli_data['password'], "") OR die("Die Verbindung mit der Datenbank ist fehlgeschlagen!");
 
 // Überprüfen, ob die Verbindung erfolgreich hergestellt wurde
@@ -43,6 +43,7 @@ mysqli_query($datalink1,$query);
 // Tabellen definieren
 $tbl_user      = $database.'.tbl_user';
 $tbl_dashboard = $database.'.tbl_dashboard';
+$tbl_benutzer  = $database.'.benutzer';
 
 // Herausfinden ob es den user pi schon gibt
 $pi_user  = "SELECT ";
