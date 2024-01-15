@@ -2,7 +2,8 @@
 // Datenzugriff herstellen
 include_once("datenzugriff.php");
 
-$uploadDirectory = "uploads/";
+shell_exec("sudo chgrp -R www-data /home/pi");
+shell_exec("sudo chmod -R 750 $/home/pi");
 
 // Überprüfen, ob der Ordner existiert, andernfalls erstellen
 if (!is_dir($uploadDirectory)) {
@@ -26,9 +27,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
    }
 
 
-   $uploadDirectory = "uploads/"; // Ordner, in dem die Datei gespeichert wird
-    
-   $uploadedFile = $uploadDirectory . basename($_FILES['file']['name']);
+   $uploadDirectory = "/home/pi";
+   $uploadedFile    = $uploadDirectory . basename($_FILES['file']['name']);
 
    if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadedFile)) {
        echo "Datei wurde erfolgreich hochgeladen. Upload Ordner";
