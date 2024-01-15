@@ -21,17 +21,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
    }
 
 
-   $uploadDirectory = "/home/pi";
-   $uploadedFile    = $uploadDirectory . basename($_FILES['file']['name']);
-
-   if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadedFile)) {
-       echo "Datei wurde erfolgreich hochgeladen. Upload Ordner";
-   } else {
-       echo "Fehler beim Hochladen der Datei. Upload Ordner";
-   }
-
    //www-data ALL=(ALL) NOPASSWD: ALL
-
+}
 
 // Die bereits vorhandenen Daten holen
 $query_dashboard  = " SELECT ".$tbl_dashboard.".bemerkung, ";
