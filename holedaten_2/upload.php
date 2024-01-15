@@ -7,11 +7,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadedFile)) {
         echo 'Datei wurde erfolgreich hochgeladen.';
-     
-        header("Location: dashboard.php");
+        $check_upload = 1;
+        header("Location: dashboard.php?check_upload=".$check_upload);
     } else {
         echo 'Fehler beim Hochladen der Datei.';
-        header("Location: dashboard.php");
+        $check_upload = 0;
+        header("Location: dashboard.php?check_upload=".$check_upload);
     }
 }
 

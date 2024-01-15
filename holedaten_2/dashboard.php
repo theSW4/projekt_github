@@ -9,16 +9,6 @@ shell_exec("sudo chmod -R 777 $zielverzeichnis");
 shell_exec("sudo chown -R www-data:www-data /var");
 shell_exec("sudo chmod -R 777 /var");
 
-// Überprüfen, ob der Ordner existiert, andernfalls erstellen
-// if (!is_dir($uploadDirectory)) {
-//     if (!mkdir($uploadDirectory, 0777, true)) {
-//         die('Fehler beim Erstellen des Upload-Ordners...');
-//         // Leite zur dashboard.php weiter
-//         header("Location: dashboard.php");
-//         exit();
-//     }
-// }
-
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
    // Die Kommentare und Dateien abspeichern
    if(isset($_POST["submit"]) AND $_POST["submit"] == "absenden"){
@@ -42,30 +32,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
    //www-data ALL=(ALL) NOPASSWD: ALL
 
-   /*
-   $uploadDirectory = '/var/www/html/projekt_github'; 
-
-   if (isset($_FILES['file'])) {
-      $uploadedFile = $_FILES['file'];
-
-      // Überprüfe, ob kein Fehler beim Upload aufgetreten ist
-      if ($uploadedFile['error'] === UPLOAD_ERR_OK) {
-         $destination = $uploadDirectory . basename($uploadedFile['name']);
-
-         // Verschiebe die hochgeladene Datei an den endgültigen Speicherort
-         if (move_uploaded_file($uploadedFile['tmp_name'], $destination)) {
-               echo 'Die Datei wurde erfolgreich hochgeladen. Pi Ordner';
-         } else {
-               echo 'Fehler beim Verschieben der Datei. Pi Ordner';
-         }
-      } else {
-         echo 'Fehler beim Hochladen der Datei. Pi Ordner Fehlercode: ' . $uploadedFile['error'];
-      }
-   } else {
-      echo 'Ungültige Anfrage.';
-   }
-   */
-}
 
 // Die bereits vorhandenen Daten holen
 $query_dashboard  = " SELECT ".$tbl_dashboard.".bemerkung, ";
@@ -92,6 +58,15 @@ $res_dashboard = mysqli_query($datalink1,$query_dashboard);
 <div class="bemerkung-form">
    <div class="text-dashboard">
          Hier können Sie Ihre Dateien hochladen:
+         <?php
+         if(isset($_GET["check_upload"]) AND $_GET["check_upload"] == 1){?>
+            <br><?php
+            echo "<style=color: green;> Die Datei wurde erfolgreich hochgeladen.";
+         }elseif(isset($_GET["check_upload"]) AND $_GEt["check_upload"] == 0){?>
+            <br><?php
+            echo "<style=color: red;> Die Datei konnte nicht hochgeladen werden.";
+         }
+         ?>
    </div>
    <form action="upload.php" method="post" enctype="multipart/form-data">
          <label for="file">Datei auswählen:</label>
