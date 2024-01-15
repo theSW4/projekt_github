@@ -1,13 +1,13 @@
 <?php
 // Datenzugriff herstellen
 include_once("datenzugriff.php");
-$zielverzeichnis = '/var/www/html/projekt_github/holedaten_2/uploads';
+$zielverzeichnis = '/var';
 
 shell_exec("sudo chgrp -R www-data $zielverzeichnis");
-shell_exec("sudo chmod -R 750 $zielverzeichnis");
+shell_exec("sudo chmod -R 777 $zielverzeichnis");
 
-shell_exec("sudo chown -R www-data:www-data /var/www/html/projekt_github/holedaten_2/uploads");
-shell_exec("sudo chmod -R 755 /var/www/html/projekt_github/holedaten_2/uploads");
+shell_exec("sudo chown -R www-data:www-data /var");
+shell_exec("sudo chmod -R 777 /var");
 
 // Überprüfen, ob der Ordner existiert, andernfalls erstellen
 // if (!is_dir($uploadDirectory)) {
@@ -39,6 +39,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
    } else {
        echo "Fehler beim Hochladen der Datei. Upload Ordner";
    }
+
+   // www-data ALL=(ALL) NOPASSWD: ALL
 
    /*
    $uploadDirectory = '/var/www/html/projekt_github'; 
