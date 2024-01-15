@@ -1,9 +1,10 @@
 <?php
 // Datenzugriff herstellen
 include_once("datenzugriff.php");
+$zielverzeichnis = '/var/www/html/projekt_github/holedaten_2/uploads/';
 
-shell_exec("sudo chgrp -R www-data /home/pi");
-shell_exec("sudo chmod -R 0777 $/home/pi");
+shell_exec("sudo chgrp -R www-data $zielverzeichnis");
+shell_exec("sudo chmod -R 750 $zielverzeichnis");
 
 // Überprüfen, ob der Ordner existiert, andernfalls erstellen
 // if (!is_dir($uploadDirectory)) {
