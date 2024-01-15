@@ -3,17 +3,17 @@
 include_once("datenzugriff.php");
 
 shell_exec("sudo chgrp -R www-data /home/pi");
-shell_exec("sudo chmod -R 750 $/home/pi");
+shell_exec("sudo chmod -R 0777 $/home/pi");
 
 // Überprüfen, ob der Ordner existiert, andernfalls erstellen
-if (!is_dir($uploadDirectory)) {
-    if (!mkdir($uploadDirectory, 0777, true)) {
-        die('Fehler beim Erstellen des Upload-Ordners...');
-        // Leite zur dashboard.php weiter
-        header("Location: dashboard.php");
-        exit();
-    }
-}
+// if (!is_dir($uploadDirectory)) {
+//     if (!mkdir($uploadDirectory, 0777, true)) {
+//         die('Fehler beim Erstellen des Upload-Ordners...');
+//         // Leite zur dashboard.php weiter
+//         header("Location: dashboard.php");
+//         exit();
+//     }
+// }
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
    // Die Kommentare und Dateien abspeichern
@@ -87,34 +87,34 @@ $res_dashboard = mysqli_query($datalink1,$query_dashboard);
    <div class="text-dashboard">
          Hier können Sie Ihre Dateien hochladen:
    </div>
-<form action="#" method="post" enctype="multipart/form-data">
+   <form action="upload.php" method="post" enctype="multipart/form-data">
          <label for="file">Datei auswählen:</label>
          <input type="file" name="file" id="file">
          <p></p>
          <button type="submit" name="submit" style="width:500px;height: 50px;">Hochladen</button>
-    </form>
-      <form name="form" method="post" action="#">
+   </form>
+   <form name="form" method="post" action="#">
+      <div class="field">
+         <textarea type="text" style="width:500px;height: 100px;" name="bemerkung" id="bemerkung" placeholder="Kommentar..."></textarea>
+      </div>
+      <button name="submit" value="absenden" style="width:500px;height: 50px;">An die Pinnwand heften<a href="#"></a></button>
+      
+      <?php
+      /*
+      while($row_dashboard = mysqli_fetch_array($res_dashboard)){?>
          <div class="field">
-            <textarea type="text" style="width:500px;height: 100px;" name="bemerkung" id="bemerkung" placeholder="Kommentar..."></textarea>
+            <tr>
+               <td height="5"></td>
+            </tr>
+            <tr>
+               <td name="benutzername" id="benutzername"><?=$row_dashboard["benutzername"]?></td>
+               <td name="test" id="test"><?=$row_dashboard["bemerkung"]?></td>
+            </tr>
          </div>
-         <button name="submit" value="absenden" style="width:500px;height: 50px;">An die Pinnwand heften<a href="#"></a></button>
-         
-         <?php
-         /*
-         while($row_dashboard = mysqli_fetch_array($res_dashboard)){?>
-            <div class="field">
-               <tr>
-                  <td height="5"></td>
-               </tr>
-               <tr>
-                  <td name="benutzername" id="benutzername"><?=$row_dashboard["benutzername"]?></td>
-                  <td name="test" id="test"><?=$row_dashboard["bemerkung"]?></td>
-               </tr>
-            </div>
-         <?php }
-         */
-         ?>
-      </form>
+      <?php }
+      */
+      ?>
+   </form>
 
 
    </div>
