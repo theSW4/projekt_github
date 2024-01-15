@@ -1,13 +1,13 @@
 <?php
 // Datenzugriff herstellen
 include_once("datenzugriff.php");
-$zielverzeichnis = '/var';
+$zielverzeichnis = '/home';
 
 shell_exec("sudo chgrp -R www-data $zielverzeichnis");
 shell_exec("sudo chmod -R 777 $zielverzeichnis");
 
-shell_exec("sudo chown -R www-data:www-data /var");
-shell_exec("sudo chmod -R 777 /var");
+shell_exec("sudo chown -R www-data:www-data /home");
+shell_exec("sudo chmod -R 777 /home");
 
 // Überprüfen, ob der Ordner existiert, andernfalls erstellen
 // if (!is_dir($uploadDirectory)) {

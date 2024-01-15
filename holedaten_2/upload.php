@@ -1,23 +1,16 @@
 <?php
 
-$zielverzeichnis = '/var/www/html/projekt_github/holedaten_2/uploads/';
-
-shell_exec("sudo chgrp -R www-data $zielverzeichnis");
-shell_exec("sudo chmod -R 750 $zielverzeichnis");
-
-
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $uploadDir = '/var/www/html/projekt_github/holedaten_2/uploads/'; // Hier das Zielverzeichnis anpassen
+    $uploadDir = '/home/pi'; 
 
     $uploadedFile = $uploadDir . basename($_FILES['file']['name']);
 
     if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadedFile)) {
         echo 'Datei wurde erfolgreich hochgeladen.';
-        die();
         header("Location: dashboard.php");
     } else {
         echo 'Fehler beim Hochladen der Datei.';
+        header("Location: dashboard.php");
     }
 }
 
