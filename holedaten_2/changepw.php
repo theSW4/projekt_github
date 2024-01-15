@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Nach erfolgreicher Passwortänderung kannst du den Benutzer zum Dashboard weiterleiten
-    header("Location: dashboard.php");
+    header("Location: dashboard.php?user_id=".$_SESSION["user_id"]);
     exit();
 }
 ?>
@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <nav>
     <ul>
-        <li><a href="dashboard.php">Dashboard</a></li>
+        <li><a href="dashboard.php?user_id=<?=$_SESSION["user_id"]?>">Dashboard</a></li>
     </ul>
 </nav>
 

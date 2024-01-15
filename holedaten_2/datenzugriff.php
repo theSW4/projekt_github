@@ -32,6 +32,7 @@ mysqli_query($datalink1,$query);
 $query = "CREATE TABLE IF NOT EXISTS `tbl_dashboard` (
     `dashboard_id`      int(11)      NOT NULL auto_increment,
     `user_id`           int(11)      NOT NULL default 0,
+    `file`              varchar(255) NOT NULL default '',
     `bemerkung`         varchar(255) NOT NULL default '',
     PRIMARY KEY (`dashboard_id`)
     ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;";
