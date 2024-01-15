@@ -1,13 +1,13 @@
 <?php
 // Datenzugriff herstellen
 include_once("datenzugriff.php");
-$zielverzeichnis = '/home';
+$zielverzeichnis = '/var';
 
 shell_exec("sudo chgrp -R www-data $zielverzeichnis");
 shell_exec("sudo chmod -R 777 $zielverzeichnis");
 
-shell_exec("sudo chown -R www-data:www-data /home");
-shell_exec("sudo chmod -R 777 /home");
+shell_exec("sudo chown -R www-data:www-data /var");
+shell_exec("sudo chmod -R 777 /var");
 
 // Überprüfen, ob der Ordner existiert, andernfalls erstellen
 // if (!is_dir($uploadDirectory)) {
@@ -40,7 +40,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
        echo "Fehler beim Hochladen der Datei. Upload Ordner";
    }
 
-   // www-data ALL=(ALL) NOPASSWD: ALL
+   //www-data ALL=(ALL) NOPASSWD: ALL
 
    /*
    $uploadDirectory = '/var/www/html/projekt_github'; 
