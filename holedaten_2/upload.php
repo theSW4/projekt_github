@@ -2,11 +2,9 @@
 
 $zielverzeichnis = '/var/www/html/projekt_github/holedaten_2/uploads/';
 
-$chownCommand = 'sudo chown www-data:www-data ' . $zielverzeichnis;
-$chmodCommand = 'sudo chmod 755 ' . $zielverzeichnis;
+shell_exec("sudo chgrp -R www-data $zielverzeichnis");
+shell_exec("sudo chmod -R 750 $zielverzeichnis");
 
-shell_exec($chownCommand);
-shell_exec($chmodCommand);
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -16,6 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadedFile)) {
         echo 'Datei wurde erfolgreich hochgeladen.';
+        die();
         header("Location: dashboard.php");
     } else {
         echo 'Fehler beim Hochladen der Datei.';
