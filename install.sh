@@ -88,6 +88,6 @@ sudo ufw default allow outgoing
 sudo ufw allow ssh
 sudo ufw allow 4242/tcp
 sudo ufw allow 80/tcp comment 'Allow Apache HTTP'
-sudo ufw enable -y
+sudo ufw enable
 
 set +
