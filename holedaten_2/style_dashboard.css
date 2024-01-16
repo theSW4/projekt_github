@@ -5,6 +5,11 @@
   font-family: 'Poppins',sans-serif;
 }
 
+body {
+    background-color: #d2d2d2;
+    overflow: hidden;
+}
+
 nav {
     background-color: #333;
     overflow: hidden;
@@ -121,4 +126,29 @@ button:hover{
 }
 .link a:hover{
   text-decoration: underline;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid #000000;
+  padding: 5px;
+  text-align: center;
+}
+
+td {
+  background-color: #ddd9d9;
+  border: 1px solid #000000;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tbody {
+  height: 100px;
+  overflow-y: auto;
 }

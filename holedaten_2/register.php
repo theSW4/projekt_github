@@ -18,13 +18,21 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                $anzahl_benutzer  = mysqli_num_rows($res_benutzername);
                
                if($anzahl_benutzer == 0){
-                   $insert  = "INSERT INTO ".$tbl_user." SET ";
-                   $insert .= $tbl_user.".benutzername = '".$_POST["benutzername"]."',";
-                   $insert .= $tbl_user.".passwort = '".$_POST["passwort"]."'";
-                   mysqli_query($datalink1,$insert);
+                  $insert  = "INSERT INTO ".$tbl_user." SET ";
+                  $insert .= $tbl_user.".benutzername = '".$_POST["benutzername"]."',";
+                  $insert .= $tbl_user.".passwort = '".$_POST["passwort"]."'";
+                  mysqli_query($datalink1,$insert);
+
+                  $query_user_id  = " SELECT user_id ";
+                  $query_user_id .= " FROM ".$tbl_user;
+                  $query_user_id .= " WHERE ".$tbl_user.".benutzername = '".$_POST["benutzername"]."'";
+                  $res_user_id    = mysqli_query($datalink1,$query_user_id); 
+                  $user_id        = mysqli_fetch_array($res_user_id);
+
+                  $_SESSION["user_id"] = $user_id[0];
    
                   // Leite zur dashboard.php weiter
-                  header("Location: dashboard.php");
+                  header("Location: dashboard.php?user_id=".$_SESSION['user_id']);
                   exit();
                }else{
                   ?>

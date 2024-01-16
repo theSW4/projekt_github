@@ -38,7 +38,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                   $_SESSION["user_id"] = $user_id[0];
    
                   // Leite zur dashboard.php weiter
-                  header("Location: dashboard.php?user_id=".$_SESSION['user_id']."");
+                  header("Location: dashboard.php?user_id=".$_SESSION['user_id']);
                   exit();
                }else{
                   echo "Die eingegebenen Benutzerdaten stimmen nicht überein!";

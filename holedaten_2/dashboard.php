@@ -29,6 +29,7 @@ $res_dashboard = mysqli_query($datalink1,$query_dashboard);
 <!-- Navigationsleiste -->
 <nav>
     <a href="#home">Home</a>
+    <a href="files.php">Dateiübersicht</a>
     <a href="changepw.php">Passwort ändern</a>
     <a href="login.php">Logout</a>
 </nav>
@@ -63,6 +64,7 @@ $res_dashboard = mysqli_query($datalink1,$query_dashboard);
       ?>
    
      
+      <?php /*
       <div class="field">
          <table>
             <thead>
@@ -89,6 +91,7 @@ $res_dashboard = mysqli_query($datalink1,$query_dashboard);
                </tbody>
          </table>
       </div>
+      */ ?>
    </form>
 
 
