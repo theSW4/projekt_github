@@ -78,7 +78,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             </div>
             <div class="link">
                <button name="submit" value="register">Registrieren</button>
-               <!-- <a href="dashboard.php" name="register" id="register">Jetzt registrieren</a> -->
             </div>
             <div class="link">
                Schon ein Konto vorhanden?

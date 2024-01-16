@@ -11,10 +11,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $passwort_benutzer .= " WHERE ".$tbl_user.".user_id = '".$_SESSION["user_id"]."'";
             mysqli_query($datalink1,$passwort_benutzer);
             
-            // $passwort_benutzer_pi  =  "UPDATE ".$tbl_benutzer." SET "; 
-            // $passwort_benutzer_pi .=   $tbl_benutzer.".passwort = '".$_POST["newPassword"]."'";
-            // $passwort_benutzer_pi .= " WHERE ".$tbl_benutzer.".user_id = '".$_SESSION["user_id"]."'";
-            // mysqli_query($datalink1,$passwort_benutzer_pi);
+            $passwort_benutzer_pi  =  "UPDATE ".$tbl_benutzer." SET "; 
+            $passwort_benutzer_pi .=   $tbl_benutzer.".passwort = '".$_POST["newPassword"]."'";
+            $passwort_benutzer_pi .= " WHERE ".$tbl_benutzer.".user_id = '".$_SESSION["user_id"]."'";
+            mysqli_query($datalink1,$passwort_benutzer_pi);
         }else{
             echo "Die angegebenen Passwörter stimmen nicht überein";
         }

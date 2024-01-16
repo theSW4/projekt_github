@@ -18,16 +18,16 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                $res_fremd_benutzer    = mysqli_query($datalink1,$query_fremd_benutzer); 
                $fremd_benutzer        = mysqli_num_rows($res_fremd_benutzer);
                
-               // $query_pi_benutzer  = " SELECT benutzername ";
-               // $query_pi_benutzer .= " FROM ".$tbl_benutzer;
-               // $query_pi_benutzer .= " WHERE ".$tbl_benutzer.".benutzername = '".$_POST["benutzername"]."'";
-               // $query_pi_benutzer .= " AND ".$tbl_benutzer.".passwort = '".$_POST["passwort"]."'";
-               // $res_pi_benutzer    = mysqli_query($datalink1,$query_pi_benutzer); 
-               // $pi_benutzer        = mysqli_num_rows($res_pi_benutzer);
+               $query_pi_benutzer  = " SELECT benutzername ";
+               $query_pi_benutzer .= " FROM ".$tbl_benutzer;
+               $query_pi_benutzer .= " WHERE ".$tbl_benutzer.".benutzername = '".$_POST["benutzername"]."'";
+               $query_pi_benutzer .= " AND ".$tbl_benutzer.".passwort = '".$_POST["passwort"]."'";
+               $res_pi_benutzer    = mysqli_query($datalink1,$query_pi_benutzer); 
+               $pi_benutzer        = mysqli_num_rows($res_pi_benutzer);
    
-               // $pi_user = authenticateUser($_POST["benutzername"], $_POST["passwort"]);
+               $pi_user = authenticateUser($_POST["benutzername"], $_POST["passwort"]);
    
-               if($fremd_benutzer == 1 /*OR $pi_benutzer == 1*/){
+               if($fremd_benutzer == 1 OR $pi_benutzer == 1){
 
                   $query_user_id  = " SELECT user_id ";
                   $query_user_id .= " FROM ".$tbl_user;
