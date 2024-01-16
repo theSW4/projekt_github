@@ -10,8 +10,6 @@ sudo apt install apache2 -y
 sudo apt install php -y
 sudo apt install htop -y
 sudo apt install mariadb-server php-mysql -y
-sudo apt install phpmyadmin -y
-sudo ln -s /usr/share/phpmyadmin /var/www/html/phpmyadmin
 
 cd /var/www/html
 sudo apt-get install git -y
@@ -38,7 +36,6 @@ USER_INFO=$(awk -F: '{print $1, $3, $7}' /etc/passwd)
 
 mysql -h $DB_HOST -u $DB_USER -p$DB_PASS $DB_NAME <<EOF
 CREATE TABLE IF NOT EXISTS benutzer (
-    user_id INT AUTO_INCREMENT PRIMARY KEY,
     benutzername VARCHAR(50),
     uid INT,
     home_directory VARCHAR(255),
