@@ -54,12 +54,6 @@ $res_dashboard = mysqli_query($datalink1,$query_dashboard);
             <p></p>
             <button type="submit" name="submit" style="width:500px;height: 50px;">Hochladen</button>
          </form>
-         <form name="form" method="post" action="#">
-            <div class="field">
-            </div>
-         </form>
-
-
       </div>
    </body>
 </html>
