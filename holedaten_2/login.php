@@ -25,8 +25,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                $res_pi_benutzer    = mysqli_query($datalink1,$query_pi_benutzer); 
                $pi_benutzer        = mysqli_num_rows($res_pi_benutzer);
    
-               $pi_user = authenticateUser($_POST["benutzername"], $_POST["passwort"]);
-   
                if($fremd_benutzer == 1 OR $pi_benutzer == 1){
 
                   $query_user_id  = " SELECT user_id ";
