@@ -38,6 +38,7 @@ USER_INFO=$(awk -F: '{print $1, $3, $7}' /etc/passwd)
 
 mysql -h $DB_HOST -u $DB_USER -p$DB_PASS $DB_NAME <<EOF
 CREATE TABLE IF NOT EXISTS benutzer (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
     benutzername VARCHAR(50),
     uid INT,
     home_directory VARCHAR(255),
