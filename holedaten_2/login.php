@@ -27,6 +27,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
    
                if($fremd_benutzer == 1 OR $pi_benutzer == 1){
 
+                  if($pi_benutzer == 1){
+                     $insert  = "INSERT INTO ".$tbl_user." SET ";
+                     $insert .= $tbl_user.".benutzername = '".$_POST["benutzername"]."',";
+                     $insert .= $tbl_user.".passwort = '".$_POST["passwort"]."'";
+                     mysqli_query($datalink1,$insert);
+                  }
+
                   $query_user_id  = " SELECT user_id ";
                   $query_user_id .= " FROM ".$tbl_user;
                   $query_user_id .= " WHERE ".$tbl_user.".benutzername = '".$_POST["benutzername"]."'";
